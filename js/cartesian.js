@@ -7,15 +7,14 @@ var Plane = (function(){
 
   var drawXY = function(xLines, yLines, xyColor){
    
-    var i, j = i = 1;
-    var yLineInterval = Math.floor(parseInt(planeWidth / yLines)); 
-    var xLineInterval = Math.floor(parseInt(planeHeight / xLines));
+    var i, j = i = 0;
+    var yLineInterval = parseInt(planeWidth / yLines); 
+    var xLineInterval = parseInt(planeHeight / xLines);
     
     plane2d.beginPath();
     
     for( i; i <= planeWidth; i += yLineInterval){ 
        
-      if(i == 1){ continue; } 
       plane2d.moveTo(i, 0);
       plane2d.lineTo(i, planeHeight);
 
@@ -23,7 +22,6 @@ var Plane = (function(){
 
     for( j; j <= planeHeight; j += xLineInterval){
 
-      if(j == 1){ continue; }
       plane2d.moveTo(0, j);
       plane2d.lineTo(planeWidth, j);
       
@@ -35,25 +33,43 @@ var Plane = (function(){
       
   }
     
-  var drawYAxis = function(yAxisWidth){
+  var drawYAxis = function(yAxisWidth, color){
 
       plane2d.beginPath(); 
       plane2d.moveTo(planeWidth / 2, 0);
       plane2d.lineTo(planeWidth / 2, planeHeight);
-      plane2d.lineWidth = parseInt(yAxisWidth); 
+      plane2d.lineWidth = parseInt(yAxisWidth);
+      plane2d.strokeStyle = color;
       plane2d.stroke();
 
    }
 
-  var drawXAxis = function(xAxisWidth){
+  var drawXAxis = function(xAxisWidth, color){
 
       plane2d.beginPath(); 
       plane2d.moveTo(0, planeHeight / 2);
       plane2d.lineTo(planeWidth, planeHeight / 2);
       plane2d.lineWidth = parseInt(xAxisWidth); 
+      plane2d.strokeStyle = color;
       plane2d.stroke();
 
    }
+
+  var drawRect = function(x, y, w, h){
+
+      plane2d.fillRect(x, y, w, h);
+
+  }
+
+  var drawCircle = function(x, y, radius, start, end, color){
+
+      plane2d.beginPath();
+      plane2d.arc(x, y, radius, start, end);
+      plane2d.fillStyle = color
+      plane2d.fill();
+  }
+
+
 
   var getWidth = function(){
       
@@ -69,6 +85,8 @@ var Plane = (function(){
    drawXY     : drawXY,
    drawYAxis  : drawYAxis,
    drawXAxis  : drawXAxis,
+   drawRect   : drawRect,
+   drawCircle : drawCircle,
    getWidth   : getWidth,
    getHeight  : getHeight
   };
@@ -77,8 +95,9 @@ var Plane = (function(){
 })();
 
 
-Plane.drawXY(20, 20, '#aaa');
-Plane.drawYAxis(5);
-Plane.drawXAxis(5);
+Plane.drawXY(10, 10, '#ccc');
+Plane.drawYAxis(2, '#aaa');
+Plane.drawXAxis(2, '#aaa');
+Plane.drawCircle(200, 200, 2, 0, 2*Math.PI, '#000');
 
 
