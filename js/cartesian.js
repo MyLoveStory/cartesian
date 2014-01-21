@@ -6,10 +6,13 @@ var Plane = (function(canvas){
   var planeWidth  = cart.width;
   var planeCenter = planeWidth / 2;
   var planeXFontPadding = (planeCenter + 5)
-  var planeXYFontPadding = (planeCenter + 10)
-  var xPlaneFontPadding  = 10;
+  var planeXYFontPadding = (planeCenter + 8)
+  var xPlaneFontPadding  = 9;
   var xPlaneNumberStart = 1;
   var xPlaneNumberInterval = 1;
+	var xPlaneFont = 'bold 7px Helvectica';
+	var xPlaneFontColor = '#000';
+	var xPlaneFontWidth = 10;
   
   var drawXY = function(xLines, yLines, xyColor){
    
@@ -26,7 +29,7 @@ var Plane = (function(canvas){
        
       if( i > planeCenter ){ 
          
-         this.drawText(i - xPlaneFontPadding, planeXYFontPadding, xPlaneNumberStart, 'Arial', '#f00', 10);
+         this.drawText(i - xPlaneFontPadding, planeXYFontPadding, xPlaneNumberStart, xPlaneFont, xPlaneFontColor, xPlaneFontWidth);
          xPlaneNumberStart += xPlaneNumberInterval;
       } 
     }
@@ -40,7 +43,6 @@ var Plane = (function(canvas){
       plane2d.strokeStyle = xyColor; 
       plane2d.stroke(); 
       plane2d.closePath(); 
-
   }
     
   var drawYAxis = function(yAxisWidth, color){
@@ -62,8 +64,7 @@ var Plane = (function(canvas){
       plane2d.lineWidth = parseInt(xAxisWidth); 
       plane2d.strokeStyle = color;
       plane2d.stroke();
-
-   }
+  }
 
   var drawRect = function(x, y, w, h){
 
@@ -110,10 +111,12 @@ var Plane = (function(canvas){
 
 })('cart');
 
+console.time('Canvas paint time');
 Plane.drawXY(10, 10, '#ccc');
 Plane.drawYAxis(2, '#aaa');
 Plane.drawXAxis(2, '#aaa');
 Plane.drawCircle(200, 200, 2, 0, 2*Math.PI, '#000');
+console.timeEnd('Canvas paint time');
 //Plane.drawText(205, 210, '1', 'Arial', '#f00', 10); 
 
 
