@@ -10,9 +10,9 @@ var Plane = (function(canvas){
   var xPlaneFontPadding  = 9;
   var xPlaneNumberStart = 1;
   var xPlaneNumberInterval = 1;
-	var xPlaneFont = 'bold 7px Helvectica';
-	var xPlaneFontColor = '#000';
-	var xPlaneFontWidth = 10;
+  var xPlaneFont = 'bold 7px Helvectica';
+  var xPlaneFontColor = '#000';
+  var xPlaneFontWidth = 10;
   
   var drawXY = function(xLines, yLines, xyColor){
    
@@ -111,12 +111,10 @@ var Plane = (function(canvas){
 
 })('cart');
 
-console.time('Canvas paint time');
 Plane.drawXY(10, 10, '#ccc');
 Plane.drawYAxis(2, '#aaa');
 Plane.drawXAxis(2, '#aaa');
 Plane.drawCircle(200, 200, 2, 0, 2*Math.PI, '#000');
-console.timeEnd('Canvas paint time');
 //Plane.drawText(205, 210, '1', 'Arial', '#f00', 10); 
 
 
