@@ -28,7 +28,7 @@ function Plane(canvas){
 }
 
 plane = new Plane('cart');
-//plane.drawXNegativeLines();
+plane.drawXNegativeLines();
 
 
 
