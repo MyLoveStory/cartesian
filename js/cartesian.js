@@ -8,11 +8,28 @@ function Plane(canvas){
   var self = this;
 
 
-  this.drawXNegativeLines = function(){
+  this.drawXNegativeLines = function(xLines){
 
    plane2d.beginPath();
-   var x = 0;
-   xIntervals = 20;
+   var x = planeCenter;
+   var xIntervals = parseInt(planeCenter/xLines);
+   for( x; x <= planeCenter; x -= xIntervals){
+
+    plane2d.moveTo(x, 0);
+    plane2d.lineTo(x, planeHeight); 
+    if(x <= 0) break; 
+
+   }
+
+    plane2d.stroke();
+
+  } 
+  
+  this.drawXPositiveLines = function(xLines){
+
+   plane2d.beginPath();
+   var x = 1;
+   var xIntervals = parseInt(planeCenter/xLines);
 
    for( x; x < planeCenter; x += xIntervals){
 
@@ -24,11 +41,13 @@ function Plane(canvas){
     plane2d.stroke();
 
   } 
-   
+  
+
+ 
 }
 
 plane = new Plane('cart');
-plane.drawXNegativeLines();
+plane.drawXNegativeLines(10);
 
 
 
